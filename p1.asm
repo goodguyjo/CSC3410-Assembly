@@ -18,11 +18,6 @@ _start:
     mov edx, 2
     int 0x80
 
-    ; Convert 1st read-in char to int and created somewhere to store it
-    mov al, [num1]
-    sub al, '0'
-    mov bl, al
-
     ; Prompt for 2nd number
     mov eax, 4
     mov ebx, 1
@@ -37,14 +32,16 @@ _start:
     mov edx, 2
     int 0x80
 
-    ; Convert 2nd read-in char to int
-    mov al, [num2]
+    ; Convert numbers from ASCII to int
+    mov al, [num1]
     sub al, '0'
+    mov bl, [num2]
+    sub bl, '0'
 
     ; adding numbers al = al + bl
-    add al, bl
+    add al, bl ; al = sum
 
-    ; Convert sum to ASCII
+    ; Convert from ASCII to int
     add al, '0'
     mov [sum], al
 
